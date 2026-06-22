@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>2026年第三届羽你So Happy羽毛球友谊赛</title>
+
+<style>
+body { font-family: Arial; padding: 16px; }
+button { padding: 10px; margin: 8px 5px; cursor: pointer; }
+.group { border: 1px solid #ddd; padding: 10px; margin-top: 10px; }
+h3 { margin: 0 0 8px 0; }
+</style>
+</head>
+
+<body>
+
+<h2>2026年第三届羽你So Happy羽毛球友谊赛</h2>
+
+<button onclick="generate()">开始抽签</button>
+
+<div id="result"></div>
+
+<script>
+const leaders = ["new","鹿","狗哥","金金金","早点睡","楠哥","fan"];
+
+function shuffle(arr){
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+function assign(pool){
+  let arr = shuffle([...pool]);
+  let groups = Array.from({length:7}, ()=>[]);
+  arr.forEach((name, i)=>{
+    groups[i % 7].push(name);
+  });
+  return groups;
+}
+
+function render(groups){
+  let html = "";
+  groups.forEach((g,i)=>{
+    html += `<div class="group">
+      <h3>G${i+1}（队长：${leaders[i]}）</h3>
+      ${g.map(x=>`<div>${x}</div>`).join("")}
+    </div>`;
+  });
+  document.getElementById("result").innerHTML = html;
+}
+
+function generate(){
+
+  let male3 = assign([
+    "Soso","鸡哥","巧克力","冯小光","DT","空城计","阿盛","阿峰",
+    "范羽勤","毛毛","建辉","Stan","宇挺","Jim"
+  ]);
+
+  let male35 = assign([
+    "肖极懋","雪糕","杰尼龟","b明","牛马D","f","子夜","简木",
+    "linbinbin","葉","山丘尔","邵景","峰","x"
+  ]);
+
+  let female25 = assign([
+    "何呵呵","霞","麦当劳","考拉","灿灿","Dannie","阿木木"
+  ]);
+
+  let female3 = assign([
+    "羽雨","YI","妮子","青","小猿","丰瑜","匪鸡则鸣"
+  ]);
+
+  let female35 = assign([
+    "丹丹","小灿烂","夏天的风","玲玲","一塊燒肉","魔女","-"
+  ]);
+
+  let groups = [];
+
+  for(let i=0;i<7;i++){
+    groups.push([
+      `男3级：${male3[i][0]}, ${male3[i][1]}`,
+      `男3.5级：${male35[i][0]}, ${male35[i][1]}`,
+      `女2.5级：${female25[i][0] || "-"}`,
+      `女3级：${female3[i][0] || "-"}`,
+      `女3.5级：${female35[i][0] || "-"}`
+    ]);
+  }
+
+  render(groups);
+}
+</script>
+
+</body>
+</html>
