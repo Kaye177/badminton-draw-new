@@ -3,22 +3,74 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>2026年第三届羽你So Happy羽毛球友谊赛</title>
 
 <style>
-body { font-family: Arial; padding: 16px; }
-button { padding: 10px; margin: 8px 5px; cursor: pointer; }
-.group { border: 1px solid #ddd; padding: 10px; margin-top: 10px; }
-h3 { margin: 0 0 8px 0; }
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  margin: 0;
+  padding: 16px;
+}
+
+/* 标题 */
+h2 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 16px;
+}
+
+/* 按钮区 */
+button {
+  width: 100%;
+  padding: 16px;
+  margin: 10px 0;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* 主按钮 */
+.start-btn {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: white;
+  font-weight: bold;
+}
+
+.start-btn:active {
+  transform: scale(0.98);
+}
+
+/* 结果卡片 */
+.group {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* 队名 */
+.group h3 {
+  margin: 0 0 8px 0;
+  color: #ff4d4f;
+}
+
+/* 人员 */
+.group div {
+  padding: 3px 0;
+  color: #333;
+  font-size: 14px;
+}
 </style>
 </head>
 
 <body>
 
-<h2>2026年第三届羽你So Happy羽毛球友谊赛</h2>
+<h2>🏸 2026年第三届羽你So Happy羽毛球友谊赛</h2>
 
-<button onclick="generate()">开始抽签</button>
+<button class="start-btn" onclick="generate()">🎲 开始抽签</button>
 
 <div id="result"></div>
 
@@ -41,9 +93,10 @@ function assign(pool){
 function render(groups){
   let html = "";
   groups.forEach((g,i)=>{
-    html += `<div class="group">
+    html += `
+    <div class="group">
       <h3>G${i+1}（队长：${leaders[i]}）</h3>
-      ${g.map(x=>`<div>${x}</div>`).join("")}
+      ${g.map(x=>`<div>🏸 ${x}</div>`).join("")}
     </div>`;
   });
   document.getElementById("result").innerHTML = html;
@@ -70,7 +123,7 @@ function generate(){
   ]);
 
   let female35 = assign([
-    "丹丹","小灿烂","夏天的风","玲玲","一塊燒肉","魔女","17"
+    "丹丹","小灿烂","夏天的风","玲玲","一塊燒肉","魔女","-"
   ]);
 
   let groups = [];
